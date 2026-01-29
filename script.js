@@ -282,11 +282,9 @@ function initializeTypewriter() {
 
 function startTypewriter() {
     const roles = [
-        'AI/ML Developer',
+        'Gen AI Developer',
         'Python Developer', 
-        'Data Science Engineer',
-        'Software Engineer',
-        'Tech Innovator'
+        'Python Backend Developer'
     ];
     
     let currentRole = 0;
@@ -1004,5 +1002,261 @@ window.addEventListener('resize', () => {
     if (neuralNetwork) {
         neuralNetwork.innerHTML = '';
         createNeuralNetwork();
+    }
+});
+
+// Projects Carousel Functionality
+function initializeProjectsCarousel() {
+    const projectsGrid = document.getElementById('projectsGrid');
+    const indicators = document.querySelectorAll('.indicator');
+    const projectCards = document.querySelectorAll('.project-card');
+    const projectsContainer = document.querySelector('.projects-container');
+    
+    if (!projectsGrid || !projectsContainer) return;
+    
+    let currentSlide = 0;
+    const totalSlides = Math.max(0, projectCards.length - 1); // 4 positions for 5 cards showing 2 at a time
+    let autoScrollInterval;
+    let isHovering = false;
+    
+    function updateCarousel() {
+        const translateX = -currentSlide * 50; // 50% per slide since we show 2 cards (40% each + margins)
+        projectsGrid.style.transform = `translateX(${translateX}%)`;
+        
+        // Update indicators
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === currentSlide);
+        });
+    }
+    
+    function goToSlide(slideIndex) {
+        if (slideIndex >= 0 && slideIndex <= totalSlides) {
+            currentSlide = slideIndex;
+            updateCarousel();
+        }
+    }
+    
+    function nextSlide() {
+        if (currentSlide < totalSlides) {
+            currentSlide++;
+        } else {
+            currentSlide = 0; // Loop back to start
+        }
+        updateCarousel();
+    }
+    
+    function startAutoScroll() {
+        if (isHovering) {
+            autoScrollInterval = setInterval(() => {
+                nextSlide();
+            }, 2000); // Scroll every 2 seconds when hovering
+        }
+    }
+    
+    function stopAutoScroll() {
+        clearInterval(autoScrollInterval);
+    }
+    
+    // Event listeners
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => goToSlide(index));
+    });
+    
+    // Hover-based auto scrolling
+    projectsContainer.addEventListener('mouseenter', () => {
+        isHovering = true;
+        startAutoScroll();
+    });
+    
+    projectsContainer.addEventListener('mouseleave', () => {
+        isHovering = false;
+        stopAutoScroll();
+    });
+    
+    // Touch/swipe support
+    let startX = 0;
+    let endX = 0;
+    
+    projectsGrid.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        stopAutoScroll();
+    });
+    
+    projectsGrid.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+    });
+    
+    projectsGrid.addEventListener('touchend', (e) => {
+        endX = e.changedTouches[0].clientX;
+        const deltaX = startX - endX;
+        
+        if (Math.abs(deltaX) > 50) {
+            if (deltaX > 0 && currentSlide < totalSlides) {
+                currentSlide++;
+                updateCarousel();
+            } else if (deltaX < 0 && currentSlide > 0) {
+                currentSlide--;
+                updateCarousel();
+            }
+        }
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft' && currentSlide > 0) {
+            currentSlide--;
+            updateCarousel();
+        }
+        if (e.key === 'ArrowRight' && currentSlide < totalSlides) {
+            currentSlide++;
+            updateCarousel();
+        }
+    });
+    
+    // Initialize carousel
+    updateCarousel();
+}
+
+// Initialize projects carousel when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(initializeProjectsCarousel, 1000);
+});
+
+// Email functionality
+function initializeEmailJS() {
+    // Initialize EmailJS with your public key
+    emailjs.init('PugwHOuw8zpvgVoXX');
+}
+
+function initializeContactForm() {
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+    const formStatus = document.getElementById('formStatus');
+    
+    if (!contactForm) return;
+    
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Show loading state
+        submitBtn.classList.add('btn-loading');
+        btnText.textContent = 'Sending...';
+        formStatus.className = 'form-status';
+        formStatus.textContent = '';
+        
+        try {
+            // Add timestamp to form data
+            const timeInput = document.createElement('input');
+            timeInput.type = 'hidden';
+            timeInput.name = 'time';
+            timeInput.value = new Date().toLocaleString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            });
+            contactForm.appendChild(timeInput);
+            
+            // Send email using EmailJS
+            const result = await emailjs.sendForm(
+                'service_15v5n9f',        // Your EmailJS service ID
+                'template_g7o8ohi',       // Your EmailJS template ID
+                contactForm
+            );
+            
+            // Remove the temporary time input
+            contactForm.removeChild(timeInput);
+            
+            console.log('Email sent successfully:', result);
+            
+            // Show success message
+            formStatus.className = 'form-status success';
+            formStatus.textContent = '✅ Message sent successfully! Thank you for reaching out.';
+            
+            // Reset form
+            contactForm.reset();
+            
+        } catch (error) {
+            console.error('Email failed to send:', error);
+            
+            // Show error message
+            formStatus.className = 'form-status error';
+            formStatus.textContent = '❌ Failed to send message. Please try again or contact me directly.';
+        }
+        
+        // Reset button state
+        submitBtn.classList.remove('btn-loading');
+        btnText.textContent = 'Send Message';
+        
+        // Hide status message after 5 seconds
+        setTimeout(() => {
+            formStatus.className = 'form-status';
+        }, 5000);
+    });
+}
+
+// Alternative: Simple form submission without EmailJS (for testing)
+function initializeBasicContactForm() {
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+    const formStatus = document.getElementById('formStatus');
+    
+    if (!contactForm) return;
+    
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Show loading state
+        submitBtn.classList.add('btn-loading');
+        btnText.textContent = 'Sending...';
+        
+        // Get form data
+        const formData = new FormData(contactForm);
+        const name = formData.get('from_name');
+        const email = formData.get('reply_to');
+        const message = formData.get('message');
+        
+        // Simulate sending (replace this with actual email service)
+        setTimeout(() => {
+            // Show success message
+            formStatus.className = 'form-status success';
+            formStatus.textContent = `✅ Thank you ${name}! Your message has been received. I'll get back to you soon.`;
+            
+            // Create mailto link as fallback
+            const mailtoLink = `mailto:udayatk02@gmail.com?subject=Portfolio Contact from ${name}&body=From: ${name} (${email})%0D%0A%0D%0A${message}`;
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Reset button state
+            submitBtn.classList.remove('btn-loading');
+            btnText.textContent = 'Send Message';
+            
+            // Hide status message after 5 seconds
+            setTimeout(() => {
+                formStatus.className = 'form-status';
+            }, 5000);
+            
+            // Open default email client as backup
+            setTimeout(() => {
+                window.open(mailtoLink);
+            }, 1000);
+            
+        }, 1500);
+    });
+}
+
+// Initialize contact form when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    // Try EmailJS first, fallback to basic form
+    if (typeof emailjs !== 'undefined') {
+        initializeEmailJS();
+        initializeContactForm();
+    } else {
+        initializeBasicContactForm();
     }
 });
