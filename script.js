@@ -191,6 +191,11 @@ function initializeHeroAnimations() {
         y: 60
     });
     
+    gsap.set(".name-part", {
+        opacity: 0,
+        y: 100
+    });
+    
     gsap.set(".code-window", {
         opacity: 0,
         scale: 0.8,
@@ -1003,123 +1008,6 @@ window.addEventListener('resize', () => {
         neuralNetwork.innerHTML = '';
         createNeuralNetwork();
     }
-});
-
-// Projects Carousel Functionality
-function initializeProjectsCarousel() {
-    const projectsGrid = document.getElementById('projectsGrid');
-    const indicators = document.querySelectorAll('.indicator');
-    const projectCards = document.querySelectorAll('.project-card');
-    const projectsContainer = document.querySelector('.projects-container');
-    
-    if (!projectsGrid || !projectsContainer) return;
-    
-    let currentSlide = 0;
-    const totalSlides = Math.max(0, projectCards.length - 1); // 4 positions for 5 cards showing 2 at a time
-    let autoScrollInterval;
-    let isHovering = false;
-    
-    function updateCarousel() {
-        const translateX = -currentSlide * 50; // 50% per slide since we show 2 cards (40% each + margins)
-        projectsGrid.style.transform = `translateX(${translateX}%)`;
-        
-        // Update indicators
-        indicators.forEach((indicator, index) => {
-            indicator.classList.toggle('active', index === currentSlide);
-        });
-    }
-    
-    function goToSlide(slideIndex) {
-        if (slideIndex >= 0 && slideIndex <= totalSlides) {
-            currentSlide = slideIndex;
-            updateCarousel();
-        }
-    }
-    
-    function nextSlide() {
-        if (currentSlide < totalSlides) {
-            currentSlide++;
-        } else {
-            currentSlide = 0; // Loop back to start
-        }
-        updateCarousel();
-    }
-    
-    function startAutoScroll() {
-        if (isHovering) {
-            autoScrollInterval = setInterval(() => {
-                nextSlide();
-            }, 2000); // Scroll every 2 seconds when hovering
-        }
-    }
-    
-    function stopAutoScroll() {
-        clearInterval(autoScrollInterval);
-    }
-    
-    // Event listeners
-    indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => goToSlide(index));
-    });
-    
-    // Hover-based auto scrolling
-    projectsContainer.addEventListener('mouseenter', () => {
-        isHovering = true;
-        startAutoScroll();
-    });
-    
-    projectsContainer.addEventListener('mouseleave', () => {
-        isHovering = false;
-        stopAutoScroll();
-    });
-    
-    // Touch/swipe support
-    let startX = 0;
-    let endX = 0;
-    
-    projectsGrid.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-        stopAutoScroll();
-    });
-    
-    projectsGrid.addEventListener('touchmove', (e) => {
-        e.preventDefault();
-    });
-    
-    projectsGrid.addEventListener('touchend', (e) => {
-        endX = e.changedTouches[0].clientX;
-        const deltaX = startX - endX;
-        
-        if (Math.abs(deltaX) > 50) {
-            if (deltaX > 0 && currentSlide < totalSlides) {
-                currentSlide++;
-                updateCarousel();
-            } else if (deltaX < 0 && currentSlide > 0) {
-                currentSlide--;
-                updateCarousel();
-            }
-        }
-    });
-    
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft' && currentSlide > 0) {
-            currentSlide--;
-            updateCarousel();
-        }
-        if (e.key === 'ArrowRight' && currentSlide < totalSlides) {
-            currentSlide++;
-            updateCarousel();
-        }
-    });
-    
-    // Initialize carousel
-    updateCarousel();
-}
-
-// Initialize projects carousel when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(initializeProjectsCarousel, 1000);
 });
 
 // Email functionality
