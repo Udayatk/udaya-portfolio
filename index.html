@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Udaya TK - AI/ML Developer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-name">Udaya</span>
+                <span class="logo-bracket">/&gt;</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+                <div class="shape shape-5"></div>
+            </div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-greeting">
+                    <span class="greeting-line">Hello, I'm</span>
+                </div>
+                
+                <h1 class="hero-name">
+                    <span class="name-part">Udaya</span>
+                    <span class="name-part">TK</span>
+                </h1>
+                
+                <div class="hero-role">
+                    <div class="role-wrapper">
+                        <span class="role-prefix">I'm a</span>
+                        <span class="role-text" id="typewriter"></span>
+                        <span class="role-cursor">|</span>
+                    </div>
+                </div>
+                
+                <p class="hero-description">
+                    AI/ML Developer and BTech Computer Science graduate specializing in Retrieval-Augmented Generation, 
+                    Large Language Models, and intelligent automation. Building innovative solutions that bridge 
+                    artificial intelligence and real-world applications.
+                </p>
+                
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <span class="btn-text">View My Work</span>
+                        <div class="btn-particles"></div>
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span class="btn-text">Get In Touch</span>
+                        <div class="btn-particles"></div>
+                    </a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="4">0</div>
+                        <div class="stat-label">AI Projects</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="7">0</div>
+                        <div class="stat-label">CGPA (out of 10)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="2">0</div>
+                        <div class="stat-label">Internships</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="2025">0</div>
+                        <div class="stat-label">Graduate Year</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="code-window">
+                    <div class="window-header">
+                        <div class="window-buttons">
+                            <span class="btn-close"></span>
+                            <span class="btn-minimize"></span>
+                            <span class="btn-maximize"></span>
+                        </div>
+                        <div class="window-title">portfolio.js</div>
+                    </div>
+                    <div class="window-content">
+                        <div class="code-lines">
+                            <div class="code-line">
+                                <span class="line-number">1</span>
+                                <span class="code-text">
+                                    <span class="keyword">const</span> 
+                                    <span class="variable">developer</span> = {
+                                </span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">2</span>
+                                <span class="code-text">
+                                    &nbsp;&nbsp;<span class="property">name</span>: 
+                                    <span class="string">'Udaya TK'</span>,
+                                </span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">3</span>
+                                <span class="code-text">
+                                    &nbsp;&nbsp;<span class="property">skills</span>: [
+                                    <span class="string">'React'</span>, 
+                                    <span class="string">'Node'</span>, 
+                                    <span class="string">'AI/ML'</span>],
+                                </span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">4</span>
+                                <span class="code-text">
+                                    &nbsp;&nbsp;<span class="property">passion</span>: 
+                                    <span class="string">'Building Amazing Apps'</span>
+                                </span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">5</span>
+                                <span class="code-text">};</span>
+                            </div>
+                            <div class="code-line typing-line">
+                                <span class="line-number">6</span>
+                                <span class="code-text">
+                                    <span class="comment">// Let's create something amazing!</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Get to know the developer behind the code</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>AI/ML Developer & Computer Science Graduate</h3>
+                    <p>
+                        I'm a passionate AI/ML Developer and Computer Science graduate from Presidency University, Bengaluru, 
+                        specializing in Big Data technologies. My journey in artificial intelligence began with curiosity about 
+                        machine learning and has evolved into expertise in cutting-edge AI technologies.
+                    </p>
+                    <p>
+                        Currently working as a Python Developer Intern at EpicMinds Information Technology, I've developed 
+                        NeuroVault, an AI-powered file management platform, and multiple innovative projects including video 
+                        dubbing systems and RAG-based chatbots. I'm proficient in LLMs, fine-tuning, and retrieval systems.
+                    </p>
+                    
+                    <div class="skills-highlight">
+                        <div class="skill-category">
+                            <h4>Programming & AI/ML</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">SQL</span>
+                                <span class="skill-tag">LLMs</span>
+                                <span class="skill-tag">RAG</span>
+                                <span class="skill-tag">Fine-Tuning</span>
+                                <span class="skill-tag">LoRA</span>
+                                <span class="skill-tag">QLoRA</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4>Frameworks & Tools</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">FastAPI</span>
+                                <span class="skill-tag">Streamlit</span>
+                                <span class="skill-tag">Pinecone</span>
+                                <span class="skill-tag">Elasticsearch</span>
+                                <span class="skill-tag">Google Gemini</span>
+                                <span class="skill-tag">Unsloth</span>
+                                <span class="skill-tag">FFmpeg</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4>Database & Cloud</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">MySQL</span>
+                                <span class="skill-tag">Vector Databases</span>
+                                <span class="skill-tag">Google Cloud Storage</span>
+                                <span class="skill-tag">Embeddings</span>
+                                <span class="skill-tag">Vector Search</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-visual">
+                    <div class="profile-card">
+                        <div class="card-glow"></div>
+                        <div class="profile-image">
+                            <div class="image-placeholder">
+                                <span class="profile-icon">👨‍💻</span>
+                            </div>
+                        </div>
+                        <div class="profile-info">
+                            <h3>Udaya TK</h3>
+                            <p>AI/ML Developer</p>
+                            <div class="location">📍 Bengaluru, Karnataka</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Innovative AI solutions and cutting-edge applications</p>
+            </div>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="card-glow"></div>
+                    <div class="project-header">
+                        <h3>NeuroVault</h3>
+                        <span class="project-type">AI-Powered Platform</span>
+                    </div>
+                    <p class="project-description">
+                        AI-powered file management and retrieval platform with semantic search capabilities, 
+                        automated metadata generation, and Google Cloud Storage integration.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Google Gemini</span>
+                        <span class="tech-tag">Elasticsearch</span>
+                        <span class="tech-tag">GCS</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Live Demo</a>
+                        <a href="#" class="project-link">Source</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="card-glow"></div>
+                    <div class="project-header">
+                        <h3>Video Dubbing AI</h3>
+                        <span class="project-type">Language Translation</span>
+                    </div>
+                    <p class="project-description">
+                        End-to-end AI system for dubbing English videos into Indian regional languages 
+                        with human-like voiceovers using speech-to-text and text-to-speech pipelines.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Streamlit</span>
+                        <span class="tech-tag">FFmpeg</span>
+                        <span class="tech-tag">Google Translate</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Live Demo</a>
+                        <a href="#" class="project-link">Source</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="card-glow"></div>
+                    <div class="project-header">
+                        <h3>RAG Chatbot</h3>
+                        <span class="project-type">Conversational AI</span>
+                    </div>
+                    <p class="project-description">
+                        Intelligent chatbot using Retrieval-Augmented Generation with website content scraping, 
+                        semantic vector search, and Pinecone integration for accurate responses.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Streamlit</span>
+                        <span class="tech-tag">Pinecone</span>
+                        <span class="tech-tag">Embeddings</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Live Demo</a>
+                        <a href="#" class="project-link">Source</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="card-glow"></div>
+                    <div class="project-header">
+                        <h3>Election Manifesto AI</h3>
+                        <span class="project-type">Fine-Tuned Model</span>
+                    </div>
+                    <p class="project-description">
+                        Fine-tuned Google Gemma-2B using LoRA and QLoRA for intelligent manifesto summarization 
+                        with optimized inference and 4-bit quantization.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Gemma-2B-IT</span>
+                        <span class="tech-tag">LoRA</span>
+                        <span class="tech-tag">QLoRA</span>
+                        <span class="tech-tag">Unsloth</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Live Demo</a>
+                        <a href="#" class="project-link">Source</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Professional Experience</h2>
+                <p class="section-subtitle">Building the future with AI and innovative technology</p>
+            </div>
+            
+            <div class="experience-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="experience-header">
+                            <h3>Python Developer Intern (AI/ML)</h3>
+                            <span class="company">EpicMinds Information Technology Pvt. Ltd.</span>
+                            <span class="duration">Aug 2025 – Present</span>
+                        </div>
+                        <ul class="experience-details">
+                            <li>Developed NeuroVault, an AI-powered file management and retrieval platform</li>
+                            <li>Generated summaries, tags, and metadata using Google Gemini API</li>
+                            <li>Built Elasticsearch-based semantic search engine for intelligent content discovery</li>
+                            <li>Integrated Google Cloud Storage with secure time-limited URL access</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="experience-header">
+                            <h3>SQL Developer Intern</h3>
+                            <span class="company">Bharat Electronics Limited (BEL)</span>
+                            <span class="duration">Jul 2024 – Aug 2024</span>
+                        </div>
+                        <ul class="experience-details">
+                            <li>Implemented MySQL master–slave database replication on Windows environment</li>
+                            <li>Configured master node and optimized read performance using slave nodes</li>
+                            <li>Improved system scalability, availability, and fault tolerance significantly</li>
+                            <li>Enhanced database performance for high-traffic enterprise applications</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Let's Work Together</h2>
+                <p class="section-subtitle">Ready to bring your ideas to life</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>udayatk02@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p>+91 9008717540</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">💼</div>
+                        <div class="contact-details">
+                            <h4>LinkedIn</h4>
+                            <p>linkedin.com/in/udaya-tk-687300231</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">🐙</div>
+                        <div class="contact-details">
+                            <h4>GitHub</h4>
+                            <p>github.com/Udayatk</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p>Bengaluru, Karnataka, India</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form class="form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <span class="btn-text">Send Message</span>
+                            <div class="btn-particles"></div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cursor -->
+    <div class="cursor">
+        <div class="cursor-dot"></div>
+        <div class="cursor-outline"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
