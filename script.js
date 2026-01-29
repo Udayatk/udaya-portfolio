@@ -7,37 +7,78 @@ gsap.registerPlugin(ScrollTrigger);
 let cursorDot = null;
 let cursorOutline = null;
 let isLoaded = false;
+let currentTheme = localStorage.getItem('theme') || 'dark';
 
 // Initialization
 document.addEventListener('DOMContentLoaded', function() {
     // Set initial page state
     document.body.style.opacity = '0';
     
+    // Set initial theme
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    updateThemeIcon();
+    
+    // Show loading screen
+    showLoadingScreen();
+    
     // Initialize all components
     initializePage();
 });
+
+// Loading Screen
+function showLoadingScreen() {
+    const loadingProgress = document.getElementById('loadingProgress');
+    let progress = 0;
+    
+    const progressInterval = setInterval(() => {
+        progress += Math.random() * 15;
+        if (progress > 100) {
+            progress = 100;
+            clearInterval(progressInterval);
+            setTimeout(() => {
+                hideLoadingScreen();
+            }, 500);
+        }
+        loadingProgress.style.width = progress + '%';
+    }, 150);
+}
+
+function hideLoadingScreen() {
+    const loadingScreen = document.getElementById('loadingScreen');
+    loadingScreen.classList.add('hidden');
+    setTimeout(() => {
+        loadingScreen.style.display = 'none';
+    }, 800);
+}
 
 // Page Initialization
 function initializePage() {
     createCustomCursor();
     initializeNavigation();
+    initializeThemeToggle();
+    initializeMobileMenu();
+    initializeScrollProgress();
+    initializeBackToTop();
     initializeHeroAnimations();
     initializeTypewriter();
     initializeCounters();
     initializeScrollAnimations();
     initializeFormHandling();
     createFloatingParticles();
+    createNeuralNetwork();
     
     // Fade in the page
-    gsap.to(document.body, {
-        opacity: 1,
-        duration: 0.8,
-        ease: "power2.out",
-        onComplete: () => {
-            isLoaded = true;
-            startHeroAnimations();
-        }
-    });
+    setTimeout(() => {
+        gsap.to(document.body, {
+            opacity: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            onComplete: () => {
+                isLoaded = true;
+                startHeroAnimations();
+            }
+        });
+    }, 2000);
 }
 
 // Custom Cursor
@@ -806,7 +847,162 @@ function activateMatrixMode() {
 // Initialize easter eggs
 addEasterEggs();
 
+// Theme Toggle Functionality
+function initializeThemeToggle() {
+    const themeToggle = document.getElementById('themeToggle');
+    if (!themeToggle) return;
+    
+    themeToggle.addEventListener('click', toggleTheme);
+}
+
+function toggleTheme() {
+    currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    localStorage.setItem('theme', currentTheme);
+    updateThemeIcon();
+    
+    // Add smooth transition effect
+    gsap.to('body', {
+        scale: 0.95,
+        duration: 0.2,
+        yoyo: true,
+        repeat: 1,
+        ease: "power2.inOut"
+    });
+}
+
+function updateThemeIcon() {
+    const themeIcon = document.querySelector('.theme-icon');
+    if (!themeIcon) return;
+    
+    themeIcon.textContent = currentTheme === 'dark' ? '🌙' : '☀️';
+}
+
+// Mobile Navigation
+function initializeMobileMenu() {
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (!hamburger || !navMenu) return;
+    
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+    
+    // Close menu when clicking on nav links
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+}
+
+// Scroll Progress
+function initializeScrollProgress() {
+    const scrollProgress = document.getElementById('scrollProgress');
+    if (!scrollProgress) return;
+    
+    window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        scrollProgress.style.width = scrolled + '%';
+    });
+}
+
+// Back to Top Button
+function initializeBackToTop() {
+    const backToTop = document.getElementById('backToTop');
+    if (!backToTop) return;
+    
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
+    
+    backToTop.addEventListener('click', () => {
+        gsap.to(window, {
+            scrollTo: { y: 0 },
+            duration: 1,
+            ease: "power2.inOut"
+        });
+    });
+}
+
+// Enhanced Particles Effect
+function createFloatingParticles() {
+    const container = document.getElementById('particlesContainer');
+    if (!container) return;
+    
+    function createParticle() {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        // Random positioning and properties
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDuration = (Math.random() * 3 + 5) + 's';
+        particle.style.animationDelay = Math.random() * 2 + 's';
+        
+        // Random color
+        const colors = ['var(--primary-color)', 'var(--secondary-color)', 'var(--accent-color)'];
+        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+        
+        container.appendChild(particle);
+        
+        // Remove particle after animation
+        setTimeout(() => {
+            if (container.contains(particle)) {
+                container.removeChild(particle);
+            }
+        }, 8000);
+    }
+    
+    // Create particles at intervals
+    setInterval(createParticle, 300);
+}
+
+// Neural Network Background
+function createNeuralNetwork() {
+    const container = document.getElementById('neuralNetwork');
+    if (!container) return;
+    
+    // Create nodes
+    for (let i = 0; i < 20; i++) {
+        const node = document.createElement('div');
+        node.className = 'neural-node';
+        node.style.left = Math.random() * 100 + '%';
+        node.style.top = Math.random() * 100 + '%';
+        node.style.animationDelay = Math.random() * 3 + 's';
+        container.appendChild(node);
+    }
+    
+    // Create connections
+    for (let i = 0; i < 15; i++) {
+        const connection = document.createElement('div');
+        connection.className = 'neural-connection';
+        connection.style.left = Math.random() * 80 + '%';
+        connection.style.top = Math.random() * 100 + '%';
+        connection.style.width = (Math.random() * 200 + 50) + 'px';
+        connection.style.transform = `rotate(${Math.random() * 360}deg)`;
+        connection.style.animationDelay = Math.random() * 2 + 's';
+        container.appendChild(connection);
+    }
+}
+
 // Window resize handler
 window.addEventListener('resize', () => {
     ScrollTrigger.refresh();
+    
+    // Update neural network on resize
+    const neuralNetwork = document.getElementById('neuralNetwork');
+    if (neuralNetwork) {
+        neuralNetwork.innerHTML = '';
+        createNeuralNetwork();
+    }
 });
